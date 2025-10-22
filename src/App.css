@@ -1,0 +1,60 @@
+/* Custom styles for components that need specific styling */
+
+/* Search bar styles */
+.searchWrap {
+	margin: 0.5rem 0 1.25rem;
+}
+
+.searchInput {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	background: #fff;
+	border: 1px solid rgba(16,24,40,0.06);
+	box-shadow: 0 1px 2px rgba(16,24,40,0.04);
+	padding: 0.5rem 0.75rem;
+	border-radius: 10px;
+	max-width: 720px;
+}
+
+.searchInput .icon {
+	color: #6b7280; /* gray-500 */
+	display: inline-flex;
+	align-items: center;
+}
+
+.searchInput .input {
+	border: none;
+	outline: none;
+	flex: 1 1 auto;
+	font-size: 0.95rem;
+	color: #0f172a; /* gray-900 */
+	background: transparent;
+}
+
+.searchInput .input::placeholder {
+	color: #94a3b8; /* gray-400 */
+}
+
+.searchInput .clear {
+	background: transparent;
+	border: none;
+	color: #9f1239; /* slightly pink/red for visibility */
+	font-size: 1.2rem;
+	line-height: 1;
+	padding: 0 0.25rem;
+	cursor: pointer;
+}
+
+.searchInput .clear:hover {
+	color: #be123c;
+}
+
+.searchInput .hint {
+	display: inline-block;
+	background: #f1f5f9;
+	color: #64748b;
+	font-size: 0.75rem;
+	padding: 0.15rem 0.4rem;
+	border-radius: 6px;
+}
