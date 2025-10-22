@@ -27,10 +27,12 @@ this is the assignment for tria frontend intern role
 - UI now uses color-coded buttons for Edit (blue) and Delete (red) actions on each contact card
 
 ## Progress 
-- v1  - you can search via names
+-v1  - you can search via names
     - you can add contact 
-- v2  - you can now search with names, number or email
+-v2  - you can now search with names, number or email
     - you can now delete contacts and edit them as well
+
+-v3   -changes UI to dark themed minimal, and modern
 
 ### How to run locally
 1. Install dependencies:
