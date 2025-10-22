@@ -23,9 +23,9 @@
 - UI now uses color-coded buttons for Edit (blue) and Delete (red) actions on each contact card
 
 ## Progress 
-v1  - you can search via names
+- v1  - you can search via names
     - you can add contact 
-v2  - you can now search with names, number or email
+- v2  - you can now search with names, number or email
     - you can now delete contacts and edit them as well
 
 ### How to run locally
