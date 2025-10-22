@@ -1,6 +1,22 @@
 // src/components/ContactCard.jsx
 import { useState } from "react";
 
+// Derive a consistent, random-looking HSL color from a string (name).
+// This keeps the same color for the same contact across renders while
+// producing varied hues for different names.
+function getColorFromName(name) {
+  if (!name) return 'hsl(220 60% 45%)';
+  // simple string hash
+  let hash = 0;
+  for (let i = 0; i < name.length; i++) {
+    hash = name.charCodeAt(i) + ((hash << 5) - hash);
+    hash = hash & hash; // convert to 32bit integer
+  }
+  const hue = Math.abs(hash) % 360; // 0 - 359
+  // Use fairly saturated, mid-lightness HSL for pleasant avatar colors
+  return `hsl(${hue} 65% 50%)`;
+}
+
 export default function ContactCard({ c, onDelete, onEdit }) {
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -20,8 +36,11 @@ export default function ContactCard({ c, onDelete, onEdit }) {
       <div className="p-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4">
-            <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-semibold">
-              {c.name.charAt(0).toUpperCase()}
+            <div
+              className="w-10 h-10 rounded-full flex items-center justify-center text-white font-semibold"
+              style={{ backgroundColor: getColorFromName(c.name) }}
+            >
+              {c.name ? c.name.charAt(0).toUpperCase() : '?'}
             </div>
             <div>
               <h3 className="text-white font-medium">{c.name}</h3>
