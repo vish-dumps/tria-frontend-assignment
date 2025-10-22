@@ -1,3 +1,13 @@
+// Edit a contact by id and update localStorage
+export async function editContact(id, input) {
+  await sleep(300);
+  const list = readStore();
+  const next = list.map(contact =>
+    contact.id === id ? { ...contact, ...input } : contact
+  );
+  writeStore(next);
+  return next.find(contact => contact.id === id);
+}
 // src/api.js
 
 // This is the mock contact data structure
@@ -53,4 +63,13 @@ export async function addContact(input) {
   const next = [contact, ...list];
   writeStore(next);
   return contact;
+}
+
+// Delete a contact by id and update localStorage
+export async function deleteContact(id) {
+  await sleep(300);
+  const list = readStore();
+  const next = list.filter(contact => contact.id !== id);
+  writeStore(next);
+  return id;
 }

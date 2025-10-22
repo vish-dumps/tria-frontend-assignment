@@ -1,7 +1,7 @@
 // src/components/AddContactModal.jsx
 import { useEffect, useRef, useState } from "react";
 
-function AddContactModal({ open, onClose, onSubmit }) {
+function AddContactModal({ open, onClose, onSubmit, initialData }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -11,14 +11,14 @@ function AddContactModal({ open, onClose, onSubmit }) {
 
   useEffect(() => {
     if (open) {
-      setName("");
-      setEmail("");
-      setPhone("");
-      setCompany("");
+      setName(initialData?.name || "");
+      setEmail(initialData?.email || "");
+      setPhone(initialData?.phone || "");
+      setCompany(initialData?.company || "");
       setErr(null);
       setTimeout(() => first.current?.focus(), 0);
     }
-  }, [open]);
+  }, [open, initialData]);
 
   if (!open) return null;
 
@@ -54,7 +54,7 @@ function AddContactModal({ open, onClose, onSubmit }) {
         onClick={stop} 
         onSubmit={handleSubmit}
       >
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">Add Contact</h2>
+  <h2 className="text-2xl font-bold text-gray-900 mb-6">{initialData ? "Edit Contact" : "Add Contact"}</h2>
         
         <div className="space-y-4">
           <div>

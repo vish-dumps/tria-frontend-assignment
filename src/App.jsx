@@ -12,6 +12,7 @@ export default function App() {
   const [query, setQuery] = useState("");
   const [debounced, setDebounced] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
+  const [editingContact, setEditingContact] = useState(null);
 
   useEffect(() => {
     const t = setTimeout(() => setDebounced(query.trim()), 150);
@@ -28,12 +29,34 @@ export default function App() {
   const filtered = useMemo(() => {
     if (!debounced) return contacts;
     const q = debounced.toLowerCase();
-    return contacts.filter((c) => c.name.toLowerCase().includes(q));
+    return contacts.filter((c) =>
+      c.name.toLowerCase().includes(q) ||
+      c.email?.toLowerCase().includes(q) ||
+      c.phone?.toLowerCase().includes(q)
+    );
   }, [contacts, debounced]);
 
+
   async function handleAdd(input) {
-    const created = await api.addContact(input);
-    setContacts((prev) => [created, ...prev]);
+    if (editingContact) {
+      // Edit mode
+      const updated = await api.editContact(editingContact.id, input);
+      setContacts((prev) => prev.map((c) => c.id === updated.id ? updated : c));
+      setEditingContact(null);
+    } else {
+      // Add mode
+      const created = await api.addContact(input);
+      setContacts((prev) => [created, ...prev]);
+    }
+  }
+  function handleEdit(contact) {
+    setEditingContact(contact);
+    setModalOpen(true);
+  }
+
+  async function handleDelete(id) {
+    await api.deleteContact(id);
+    setContacts((prev) => prev.filter((c) => c.id !== id));
   }
 
   return (
@@ -62,12 +85,20 @@ export default function App() {
       ) : (
         <section className="grid gap-4" aria-live="polite">
           {filtered.map((c) => (
-            <ContactCard key={c.id} c={c} />
+            <ContactCard key={c.id} c={c} onDelete={handleDelete} onEdit={handleEdit} />
           ))}
         </section>
       )}
 
-      <AddContactModal open={modalOpen} onClose={() => setModalOpen(false)} onSubmit={handleAdd} />
+      <AddContactModal
+        open={modalOpen}
+        onClose={() => {
+          setModalOpen(false);
+          setEditingContact(null);
+        }}
+        onSubmit={handleAdd}
+        initialData={editingContact}
+      />
     </div>
   );
 }

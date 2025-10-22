@@ -29,7 +29,7 @@ export default function SearchBar({ query, onChange, onClear }) {
         <input
           ref={ref}
           className="input"
-          placeholder="Search contacts by name…  (press / to focus)"
+          placeholder="Search by name, email, or phone…  (press / to focus)"
           value={query}
           onChange={(e) => onChange(e.target.value)}
           aria-label="Search contacts"
