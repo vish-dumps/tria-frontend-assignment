@@ -48,6 +48,8 @@ The application is deployed and can be accessed here: [Tria Contact Manager](htt
 3. **Data Storage**: Used localStorage for persistence, assuming this is a client-side demo
 4. **Avatar Generation**: Integrated UI Avatars for visual representation of contacts
 
+> Note on AI assistance: I used AI developer tools selectively to speed up small tasks (like utility prototypes and suggestions). Every suggestion was reviewed, adapted, and tested by me — final design and code decisions reflect my judgment and coding style.
+
 ## 🚀 Getting Started
 
 ### Prerequisites
