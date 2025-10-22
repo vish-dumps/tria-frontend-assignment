@@ -101,6 +101,20 @@ export default function App() {
           initialData={editingContact}
         />
       </div>
+      <div className="fixed bottom-4 right-4 bg-gray-900/80 backdrop-blur-sm px-4 py-2 rounded-lg">
+        <p className="text-gray-400 text-sm">
+          Created by{' '}
+          <a 
+            href="https://github.com/vish-dumps/tria-frontend-assignment" 
+            className="text-blue-400 hover:text-blue-300 transition-colors"
+            target="_blank" 
+            rel="noopener noreferrer"
+          >
+            Vishwas Soni
+          </a>{' '}
+          (Roll: 23ME10098)
+        </p>
+      </div>
     </div>
   );
 }
