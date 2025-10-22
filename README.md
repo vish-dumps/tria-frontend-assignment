@@ -19,12 +19,6 @@ A modern, responsive contact management application built with React and Vite. C
 4. Search: type in the search box to filter contacts by name, phone, or email in real time.
 5. Persistence: data is saved to localStorage automatically after add/edit/delete.
 
-## Notes and next steps - to be done in future versions
-- Replace localStorage with a backend API for multi-device sync.
-- Add form validations and unit tests for critical components.
-- Consider migrating to TypeScript for stronger type safety.
-- UI now uses color-coded buttons for Edit (blue) and Delete (red) actions on each contact card
-
 ## Progress 
 - v1  - you can search via names
      - you can add contact 
