@@ -60,45 +60,47 @@ export default function App() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
-      <header className="flex justify-between items-center mb-8">
-        <div>
-          <h1 className="text-3xl font-bold text-gray-900">Tria Contacts</h1>
-          <p className="text-gray-600">{contacts.length} total</p>
-        </div>
-        <button 
-          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors"
-          onClick={() => setModalOpen(true)}
-        >
-          Add contact
-        </button>
-      </header>
+    <div className="min-h-screen bg-gray-900">
+      <div className="max-w-6xl mx-auto p-6">
+        <header className="flex justify-between items-center mb-8">
+          <div>
+            <h1 className="text-2xl font-semibold text-white">Tria Contacts</h1>
+            <p className="text-gray-400 text-sm">{contacts.length} total contacts</p>
+          </div>
+          <button 
+            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition-all duration-200 font-medium"
+            onClick={() => setModalOpen(true)}
+          >
+            Add Contact
+          </button>
+        </header>
 
-      <SearchBar query={query} onChange={setQuery} onClear={() => setQuery("")} />
+        <SearchBar query={query} onChange={setQuery} onClear={() => setQuery("")} />
 
-      {loading ? (
-        <div className="text-center py-12 text-gray-500">Loading contacts…</div>
-      ) : filtered.length === 0 ? (
-        <div className="text-center py-12 text-gray-500">
-          {query ? <>No results for "{query}"</> : <>No contacts yet. Add your first contact.</>}
-        </div>
-      ) : (
-        <section className="grid gap-4" aria-live="polite">
-          {filtered.map((c) => (
-            <ContactCard key={c.id} c={c} onDelete={handleDelete} onEdit={handleEdit} />
-          ))}
-        </section>
-      )}
+        {loading ? (
+          <div className="text-center py-16 text-gray-400">Loading contacts…</div>
+        ) : filtered.length === 0 ? (
+          <div className="text-center py-16 text-gray-400">
+            {query ? <>No results for "{query}"</> : <>No contacts yet. Add your first contact.</>}
+          </div>
+        ) : (
+          <section className="space-y-2" aria-live="polite">
+            {filtered.map((c) => (
+              <ContactCard key={c.id} c={c} onDelete={handleDelete} onEdit={handleEdit} />
+            ))}
+          </section>
+        )}
 
-      <AddContactModal
-        open={modalOpen}
-        onClose={() => {
-          setModalOpen(false);
-          setEditingContact(null);
-        }}
-        onSubmit={handleAdd}
-        initialData={editingContact}
-      />
+        <AddContactModal
+          open={modalOpen}
+          onClose={() => {
+            setModalOpen(false);
+            setEditingContact(null);
+          }}
+          onSubmit={handleAdd}
+          initialData={editingContact}
+        />
+      </div>
     </div>
   );
 }
